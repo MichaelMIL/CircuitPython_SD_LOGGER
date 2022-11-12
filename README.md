@@ -12,7 +12,7 @@ SD logger - for logging data to SD card on CircuitPython projects.
 
 ## Usage <a name = "usage"></a>
 
-'''
+```
 from SdLogger import SdLogger
 
 logger = SdLogger()
@@ -24,4 +24,4 @@ logger.log_data(i)
 print(f'Logging: {i}')
 
 logger.close()
-'''
+```
