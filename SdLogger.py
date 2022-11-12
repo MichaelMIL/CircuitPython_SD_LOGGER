@@ -16,19 +16,19 @@ class SdLogger:
     """Class for logging data to CSV"""
 
     def __init__(self,batch_size:int=1000, headers:str=None,file_name:str=None, path:str="/sd/",overwrite:bool=False):
-        self.batch_size = batch_size
         if file_name:
-            self.file_name = file_name
+            self.file_name = file_name # Uses user specified file name
         else:
             self.file_name = generate_file_name()  # Generates 5 digits unique name for each file
-        self.file_path = path + self.file_name
+        self.file_path = path + self.file_name # Create path
         if overwrite:
-            self.file = open(self.file_path, "w")
+            self.file = open(self.file_path, "w") # open file in write mode (overwriting the previous file)
         else:
-            self.file = open(self.file_path, "a")
+            self.file = open(self.file_path, "a") # open file in append mode
         if headers:
-            self.set_headers(headers)
-        self.index = 0
+            self.set_headers(headers) # Writing file headers
+        self.index = 0 # Logged data counter
+        self.batch_size = batch_size # Sets the data items to save at the time
 
     def set_headers(self, header):
         """Sets the headers for CSV file"""
