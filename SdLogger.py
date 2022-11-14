@@ -7,9 +7,9 @@ def random_with_N_digits(n:int)->int:
     return randint(range_start, range_end)
 
 
-def generate_file_name()->str:
+def generate_file_name(type:str='csv')->str:
     """generates file unique file name"""
-    return str(random_with_N_digits(5)) + ".csv"
+    return str(random_with_N_digits(5)) + f".{type}"
 
 def path_validator(path:str) ->str:
     if len(path) < 3:
@@ -28,7 +28,10 @@ class SdLogger:
         if file_name:
             self.file_name = file_name # Uses user specified file name
         else:
-            self.file_name = generate_file_name()  # Generates 5 digits unique name for each file
+            if bin:
+                self.file_name = generate_file_name(type='bin')  # Generates 5 digits unique name for each file
+            else:
+                self.file_name = generate_file_name()  # Generates 5 digits unique name for each file
         self.file_path = path_validator(path) + self.file_name # Create path
         if overwrite:
             if bin:
